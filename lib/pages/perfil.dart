@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do/pages/sobre.dart'; // Importa a tela "Sobre o App"
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -14,13 +15,13 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 20),
-            // foto
-            CircleAvatar(
-            radius: 60,
-            backgroundImage: const AssetImage('assets/images/profile_picture.jpg')
+            // Foto de perfil
+            const CircleAvatar(
+              radius: 60,
+              backgroundImage: AssetImage('assets/images/profile_picture.jpg'),
             ),
             const SizedBox(height: 20),
-            // nome
+            // Nome do usuário
             const Text(
               'Po',
               style: TextStyle(
@@ -29,7 +30,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            // email
+            // E-mail do usuário
             const Text(
               'po.dragaoguerreiro@gmail.com',
               style: TextStyle(
@@ -38,7 +39,7 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // infos do perfil 
+            // Informações do perfil
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Card(
@@ -73,16 +74,40 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            
+
+            // Botão "Editar Perfil"
             ElevatedButton.icon(
               onPressed: () {
-                //editar perfil em breve pop up
+                // Editar perfil em breve (pop-up)
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Editar perfil em breve!')),
                 );
               },
               icon: const Icon(Icons.edit),
               label: const Text('Editar Perfil'),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Botão "Sobre o App"
+            ElevatedButton.icon(
+              onPressed: () {
+                // Navega para a tela "Sobre o App"
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SobreApp(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.info),
+              label: const Text('Sobre o App'),
               style: ElevatedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 shape: RoundedRectangleBorder(

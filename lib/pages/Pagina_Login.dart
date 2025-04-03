@@ -49,6 +49,32 @@ class _PaginaLoginState extends State<PaginaLogin> {
     );
   }
 
+  // Função para realizar o login com validação
+  void realizarLogin(BuildContext context) {
+    final username = usernameController.text;
+    final password = passwordController.text;
+
+    if (username.isNotEmpty && password.isNotEmpty) {
+      // Se os campos estiverem preenchidos, navega para a página principal
+      navegarParaHome(context);
+    } else {
+      // Exibe um alerta informando que os campos devem ser preenchidos
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Erro'),
+          content: const Text('Por favor, preencha todos os campos.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context); // Obtém o estado do tema
@@ -69,7 +95,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
 
                     // Logo
                     Icon(
-                      Icons.lock,
+                      Icons.add_task, // Ícone de tarefa
                       size: 100,
                       color: isDarkMode ? Colors.white : Colors.black, // Cor dinâmica
                     ),
@@ -156,7 +182,7 @@ class _PaginaLoginState extends State<PaginaLogin> {
                       children: [
                         // Botão de Login
                         GestureDetector(
-                          onTap: () => navegarParaHome(context), // Navega para a página principal
+                          onTap: () => realizarLogin(context), // Chama a função de verificação
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                             decoration: BoxDecoration(
