@@ -6,19 +6,21 @@ class PaginaCadastro extends StatelessWidget {
   // Controladores para os campos de texto
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController(); // Novo controlador para o e-mail
 
   // Função para lidar com o cadastro
   void realizarCadastro(BuildContext context) {
     final username = usernameController.text;
     final password = passwordController.text;
+    final email = emailController.text; // Obtém o valor do e-mail
 
-    if (username.isNotEmpty && password.isNotEmpty) {
+    if (username.isNotEmpty && password.isNotEmpty && email.isNotEmpty) {
       // Exemplo: Exibir uma mensagem de sucesso
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: const Text('Cadastro Realizado'),
-          content: Text('Usuário: $username\nSenha: $password'),
+          content: Text('Usuário: $username\nE-mail: $email\nSenha: $password'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -63,6 +65,19 @@ class PaginaCadastro extends StatelessWidget {
               controller: usernameController,
               decoration: InputDecoration(
                 labelText: 'Nome de Usuário',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Campo de texto para o e-mail
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'E-mail',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
