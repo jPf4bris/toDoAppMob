@@ -1,3 +1,3 @@
 # flutter_to_do
 
-A new Flutter project.
+Projeto 1 de Programação para Dispositivos Móveis 2025
